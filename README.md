@@ -2,6 +2,20 @@
 
 Este repositório contém a estrutura de componentes desenvolvidos para otimizar o tempo no desenvolvimento.
 
+## FERRAMENTAS UTILIZADAS
+
+NPM
+GULP
+JQUERY
+SLICK
+BOOTSTRAP
+SASS
+GIT
+
+## VERSÃO NODE
+
+10.16.3
+
 ```
 
 ## Instalação
@@ -14,7 +28,7 @@ Abra o terminal no diretório do projeto e rode o comando abaixo para instalar a
 
 ```
 
-## Comandos de Uso
+## Comando para Rodar o projeto
 
 Os comandos abaixo foram pensados para automatizar algumas tarefas do dia-a-dia.
 
