@@ -1,6 +1,6 @@
 # PROJETO
 
-Este repositório contém a estrutura de componentes desenvolvidos para otimizar o tempo no desenvolvimento de novas lojas.
+Este repositório contém a estrutura de componentes desenvolvidos para otimizar o tempo no desenvolvimento.
 
 ```
 

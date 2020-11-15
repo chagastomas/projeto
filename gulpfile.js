@@ -14,16 +14,28 @@ const gulp = require('gulp'),
 const paths = {
   styles: {
     src: 'src/scss/**/*.scss',
-    dest: 'arquivos'
+    dest: 'dist/arquivos',
   },
   scripts: {
     src: 'src/js/**/*.js',
-    dest: 'arquivos'
+    dest: 'dist/arquivos',
   },
   images: {
     src: 'src/images/**/*',
-    dest: 'arquivos'
-  }
+    dest: 'dist/arquivos',
+  },
+  styles_components: {
+    src: 'components/scss/*.scss',
+    dest: 'dist/arquivos',
+  },
+  boots_styles: {
+    src: 'components/scss/bootstrap/*.scss',
+    dest: 'dist/arquivos',
+  },
+  scripts_components: {
+    src: ['components/js/*.js'],
+    dest: 'dist/arquivos',
+  },
 };
 
 function style() {
@@ -53,11 +65,11 @@ function script() {
             '@babel/preset-env',
             {
               targets: {
-                browsers: ['ie >= 11']
-              }
-            }
-          ]
-        ]
+                browsers: ['ie >= 11'],
+              },
+            },
+          ],
+        ],
       })
     )
     .pipe(sourcemaps.write())
@@ -77,6 +89,60 @@ function image() {
     .pipe(browserSync.stream());
 }
 
+function styles_components() {
+  return gulp
+    .src(paths.styles_components.src)
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(postcss([autoprefixer()]))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.styles_components.dest))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.styles_components.dest));
+}
+
+function bootstrap_style() {
+  return gulp
+    .src(paths.boots_styles.src)
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(postcss([autoprefixer()]))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.boots_styles.dest))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.boots_styles.dest))
+    .pipe(browserSync.stream());
+}
+
+function scripts_components() {
+  return gulp
+    .src(paths.scripts_components.src)
+    .pipe(
+      babel({
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                browsers: ['ie >= 11'],
+              },
+            },
+          ],
+        ],
+      })
+    )
+    .pipe(rename('slick.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.scripts_components.dest))
+    .pipe(browserSync.stream());
+}
+
 function reload() {
   browserSync.reload();
 }
@@ -84,13 +150,16 @@ function reload() {
 function watch() {
   browserSync.init({
     server: {
-      baseDir: './'
-    }
+      baseDir: './',
+    },
   });
   gulp.watch(paths.styles.src, style);
   gulp.watch(paths.scripts.src, script);
   gulp.watch(paths.images.src, image);
   gulp.watch('*.html').on('change', reload);
+  gulp.watch(paths.styles_components.src, styles_components);
+  gulp.watch(paths.boots_styles.src, bootstrap_style);
+  gulp.watch(paths.scripts_components.src, scripts_components);
 }
 
 // Exposing the tasks is important for it's allowing to run it on the command line
@@ -103,9 +172,30 @@ exports.style = style;
 exports.script = script;
 // $ gulp script
 exports.image = image;
+// $ gulp style components
+exports.styles_components = styles_components;
+// $ gulp bootstrap
+exports.bootstrap_style = bootstrap_style;
+// $ gulp script
+exports.scriptsComponents = scripts_components;
 // $ gulp serve
-exports.serve = gulp.parallel(style, script, image, watch);
+exports.serve = gulp.parallel(
+  style,
+  script,
+  image,
+  watch,
+  styles_components,
+  bootstrap_style,
+  scripts_components
+);
 
-const build = gulp.parallel(style, script, image);
+const build = gulp.parallel(
+  style,
+  script,
+  image,
+  styles_components,
+  bootstrap_style,
+  scripts_components
+);
 // $ gulp
 gulp.task('default', build);
