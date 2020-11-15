@@ -5,11 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Sky</title>
-    <!-- <link rel="stylesheet" href="./arquivos/css-file-name.min.css"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" />
+    <link rel="stylesheet" href="./arquivos/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="./arquivos/slick/slick.css" />
+    <link rel="stylesheet" href="./arquivos/main.min.css" />
   </head>
   <body>
-    <!-- Use this file to build your html code for a local test -->
+    <header>
+      <div class="header_top container d-flex justify-content-between align-items-center pt-3 pb-3">
+        <div class="header_top-logo-acessibility d-flex align-items-center">
+          <section class="logo">
+            <a href="https://skyplay.sky.com.br/">
+              <img
+                src="https://skyplay.sky.com.br/o/sky-play-theme/images/logo-sky.svg"
+                alt="Sky"
+              />
+            </a>
+          </section>
+          <section class="acessibility">
+            <span>Acessibilidade</span>
+            <button>C</button>
+            <button>A+</button>
+            <button>A-</button>
+          </section>
+          <section class="play">Play</section>
+        </div>
+        <div class="header_top-login">
+          <span>Entrar</span>
+        </div>
+      </div>
+      <div class="header_down">
+        <ul>
+          <li><p>Filmes</p></li>
+          <li><p>Séries</p></li>
+          <li><p>Canais</p></li>
+        </ul>
+      </div>
+    </header>
 
-    <!-- <script src="./arquivos/js-file-name.min.js"></script> -->
+    <main>
+      <div class="wrapper-movies mt-5 mb-5">
+        <h2 class="d-flex justify-content-center">Filmes</h2>
+        <section class="photos"></section>
+      </div>
+      <div class="wrapper-movies-highlights mt-5 mb-5">
+        <h2 class="d-flex justify-content-center">Destaques</h2>
+        <section class="photos"></section>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="./arquivos/slick/slick.min.js"></script>
+    <script src="./arquivos/main.min.js"></script>
   </body>
 </html>

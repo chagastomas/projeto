@@ -1,8 +1,8 @@
 header {
   background-color: #fafaff;
 
-  .wrapper-top {
-    .wrapper-logo-acessibility {
+  .header_top {
+    &-logo-acessibility {
       .logo {
         margin-right: 20px;
 
@@ -29,18 +29,20 @@ header {
           color: #333333;
           padding: 0;
           outline: 0;
-
-          &.play {
-            background-color: transparent;
-            border: none;
-            font-size: 15px;
-            font-weight: bold;
-          }
         }
+      }
+
+      .play {
+        background-color: transparent;
+        border: none;
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 50px;
+        cursor: pointer;
       }
     }
 
-    .login {
+    &-login {
       span {
         font-family: "Roboto";
         font-weight: bold;
@@ -49,7 +51,7 @@ header {
     }
   }
 
-  .wrapper-down {
+  .header_down {
     background-color: #ffffff;
 
     ul {
@@ -58,6 +60,8 @@ header {
       align-items: center;
       width: 100%;
       box-shadow: 0px 5px 5px 0px #FAFAFA;
+      padding: 0;
+      padding-top: 4px;
 
       li {
         list-style: none;
@@ -82,10 +86,65 @@ header {
   }
 }
 
-// main {
-//   .wrapper-movies-action {
-//     img {
-//       width: 10% !important;
-//     }
-//   }
-// }
+main {
+
+  .wrapper-movies,
+  .wrapper-movies-highlights {
+    h2 {
+      font-family: 'Roboto';
+      font-weight: bold;
+    }
+
+    .photos {
+      position: relative;
+
+      .slick-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        background: #000000;
+        opacity: .7;
+        border: none;
+        font-size: 0;
+        outline: none;
+        width: 40px;
+        height: 40px;
+
+        &.slick-prev {
+          left: 5px;
+          border-radius: 0 20px 20px 0;
+
+          &::before {
+            content: '<';
+            font-family: "Roboto";
+            font-size: 20px;
+            color: #ffffff;
+          }
+        }
+
+        &.slick-next {
+          right: 5px;
+          border-radius: 20px 0 0 20px;
+
+          &::before {
+            content: '>';
+            font-family: "Roboto";
+            font-size: 20px;
+            color: #ffffff;
+          }
+        }
+      }
+
+      a {
+        padding: 0 5px;
+
+        img {
+          border-radius: 8px;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
