@@ -108,30 +108,34 @@ main {
         border: none;
         font-size: 0;
         outline: none;
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 50px;
 
         &.slick-prev {
-          left: 5px;
+          left: 10px;
           border-radius: 0 20px 20px 0;
 
           &::before {
-            content: '<';
-            font-family: "Roboto";
-            font-size: 20px;
-            color: #ffffff;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 20px 10px 0;
+            border-color: transparent #ffffff transparent transparent;
           }
         }
 
         &.slick-next {
-          right: 5px;
+          right: 10px;
           border-radius: 20px 0 0 20px;
 
           &::before {
-            content: '>';
-            font-family: "Roboto";
-            font-size: 20px;
-            color: #ffffff;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 20px;
+            border-color: transparent transparent transparent #ffffff;
           }
         }
       }
@@ -187,8 +191,18 @@ footer {
     }
 
     .institutional {
+      .mobile {
+        display: none;
+      }
+
+      span {
+        font-family: "Roboto";
+        font-size: 18px;
+        font-weight: bold;
+      }
+
       ul {
-        margin: 0;
+        margin: 20px 0 0 0;
         padding: 0;
 
         li {
@@ -199,6 +213,89 @@ footer {
             color: #000000;
             font-family: "Roboto";
             text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header {
+
+    .header_top {
+      &-logo-acessibility {
+        .logo {
+          margin-right: 0;
+        }
+
+        .acessibility {
+
+          button {
+            margin: 0 5px;
+          }
+        }
+
+        .play {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  header {
+
+    .header_top {
+      &-logo-acessibility {
+
+        .acessibility,
+        .play {
+          display: none;
+        }
+      }
+    }
+  }
+
+  footer {
+    .footer_bottom {
+      flex-direction: column;
+      margin-top: 20px;
+
+      .app {
+        width: 100% !important;
+      }
+
+      .institutional {
+        width: 100% !important;
+        position: relative;
+
+        .desktop {
+          display: none;
+        }
+
+        .mobile {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+
+          &::after {
+            content: ">";
+            font-size: 20px;
+            position: absolute;
+            top: 0px;
+            right: 0;
+            display: block;
+          }
+
+          ul {
+            display: none;
+
+            &.active {
+              display: block;
+            }
           }
         }
       }

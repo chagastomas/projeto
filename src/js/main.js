@@ -17,6 +17,7 @@ $(document).ready(function () {
       );
     }
     carroussel();
+    institutional();
   });
 });
 
@@ -66,5 +67,12 @@ function carroussel() {
         },
       },
     ],
+  });
+}
+
+function institutional() {
+  $('.institutional').on('click', function () {
+    $('.institutional .mobile ul').slideToggle();
+    $('.institutional .mobile ul').toggleClass('active');
   });
 }
